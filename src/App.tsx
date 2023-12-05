@@ -1,38 +1,24 @@
-import { useState } from "react";
+import { useState, FC } from "react";
 import "./App.css";
+import LandPageBtn from "./LandPageBtn";
+import LoginComponent from "./LoginComponent";
 
-const App = () => {
-  const [top, setTop] = useState(0);
-  const [opacity, setOpacity] = useState(1);
-  const handleClick = () => {
-    setTop(top + 250);
-    setOpacity(0);
+interface LandPageBtnProps {
+  onClick: () => void;
+}
+
+const App: FC = () => {
+  const [showLogin, setShowLogin] = useState(false);
+
+  const handleButtonClick: LandPageBtnProps['onClick'] = () => {
+    setShowLogin(true);
   };
 
   return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        {top <= 250 && (
-          <button
-            type="button"
-            className="btn btn-primary"
-            id="press-me"
-            onClick={handleClick}
-            style={{ transform: `translateY(${top}px)`, opacity: `${opacity}` }}
-            disabled={opacity === 0}
-          >
-            Primary
-          </button>
-        )}
-      </div>
-    </>
+    <div className="app-container">
+      {!showLogin && <LandPageBtn onClick={handleButtonClick} />}
+      {showLogin && <LoginComponent />}
+    </div>
   );
 };
 
