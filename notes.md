@@ -19,10 +19,14 @@ Welcome to the AI-Powered Cat Generation Project! This innovative endeavor uses 
 - [ ] Research on OpenAI's assistance API for potential integration.
 - [X] Set up the initial project repository and documentation.
 - [X] Choose the tech stack for front-end, back-end, and database.
+- [ ] create designs for login/sign up and chat integration
+- [ ] create design for chat
+- [ ] create design for user prompt generation 
 
 ## Phase 2: Front-End Development
 - [ ] Implement the front-end React components for the login/sign-in page.
 - [ ] Ensure proper state management and validation for user input on the front-end.
+- [ ] Develop chat UI with pop-up icon for information about cats
 
 ## Phase 3: Back-End Development
 - [ ] Develop the REST API endpoints using Node.js or another preferred server-side language.
@@ -31,6 +35,10 @@ Welcome to the AI-Powered Cat Generation Project! This innovative endeavor uses 
     - [ ] Cat Picture Schema: To store individual cat image details.
     - [ ] Cat Picture List Schema: To store lists or collections of cat pictures.
 - [ ] Implement authentication and authorization logic for user accounts.
+- Set up OpenAI Assistance integration
+    - [ ] Make calls to API given specific parameters from user
+    buttons "GENERATE CAT THAT LOOKS LIKE <>"
+    - Also develop chat implementation to only ask about cats
 
 ## Phase 4: Integration and Testing
 - [ ] Integrate the front-end with the back-end services.
@@ -58,3 +66,6 @@ Welcome to the AI-Powered Cat Generation Project! This innovative endeavor uses 
 ## Day 2: [?]
 - Plan to work on getting a similar looking 'sign up' page
 - transition: sign in disappears, sign up shows up
+
+## Day 3 [?]
+- Resear
