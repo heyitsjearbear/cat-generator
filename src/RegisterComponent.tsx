@@ -12,6 +12,7 @@ const RegisterComponent: React.FC<IRegisterForm> = ({ onSwitch }) => {
   const handleRegister = (e: FormEvent) => {
     e.preventDefault();
     // Registration logic here...
+    console.log (email, password, confirmPassword);
   };
 
   const handleInputChange =

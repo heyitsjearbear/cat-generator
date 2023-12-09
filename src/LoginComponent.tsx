@@ -6,8 +6,8 @@ interface LoginComponentProps {
 }
 
 const LoginComponent: React.FC<LoginComponentProps> = ({ onSwitch }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
