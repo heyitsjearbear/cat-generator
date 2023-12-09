@@ -25,16 +25,16 @@ Welcome to the AI-Powered Cat Generation Project! This innovative endeavor uses 
 
 ## Phase 2: Front-End Development
 - [x] Implement the front-end React components for the login/sign-in page.
-- [ ] Ensure proper state management and validation for user input on the front-end.
+- [x] Ensure proper state management and validation for user input on the front-end.
 - [ ] Develop chat UI with pop-up icon for information about cats
 
 ## Phase 3: Back-End Development
-- [ ] Develop the REST API endpoints using Node.js or another preferred server-side language.
+- [x] Develop the REST API endpoints using Node.js or another preferred server-side language.
 - [ ] Set up MongoDB and create the following schemas:
-    - [ ] User Schema: To store user information and authentication details.
+    - [x] User Schema: To store user information and authentication details.
     - [ ] Cat Picture Schema: To store individual cat image details.
     - [ ] Cat Picture List Schema: To store lists or collections of cat pictures.
-- [ ] Implement authentication and authorization logic for user accounts.
+- [x] Implement authentication and authorization logic for user accounts.
 - Set up OpenAI Assistance integration
     - [ ] Make calls to API given specific parameters from user
     buttons "GENERATE CAT THAT LOOKS LIKE <>"
@@ -67,6 +67,6 @@ Welcome to the AI-Powered Cat Generation Project! This innovative endeavor uses 
 - Worked on getting a similar looking 'sign up' page
 - transition: sign in disappears, sign up shows up
 
-## Day 3 [?]
-- set up routes for front end to receive user login
-- start styling cat generation box
+## Day 3 [12/9/2023]
+- set up routes for front end to receive user login/registration
+- added functionality to make api calls to REST API
