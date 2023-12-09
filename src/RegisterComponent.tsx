@@ -1,25 +1,58 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
-import "./RegisterComponent.css";
-interface IRegisterForm {
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import "./RegisterComponent.css"; // Make sure to create a corresponding CSS file
+
+interface RegisterComponentProps {
   onSwitch: () => void;
+  isLogin: boolean;
+  // You can define props here if needed
 }
 
-const RegisterComponent: React.FC<IRegisterForm> = ({ onSwitch }) => {
+const RegisterComponent: React.FC<RegisterComponentProps> = ({ onSwitch, isLogin }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const navigate = useNavigate(); // Use the useNavigate hook
 
-  const handleRegister = (e: FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Registration logic here...
-    console.log (email, password, confirmPassword);
+    console.log(email, password, confirmPassword);
+    if (password !== confirmPassword) {
+      console.error('Passwords do not match');
+      return;
+    }
+  
+    try {
+      const response = await fetch('http://localhost:3000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      console.log(response);
+  
+      if (!response.ok) {
+        throw new Error('Registration failed');
+      }
+  
+      const data = await response.json();
+  
+      // Save the token to localStorage or to a cookie
+      localStorage.setItem('token', data.token);
+  
+      // Navigate to the home route
+      navigate('/home');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleInputChange =
-    (setState: React.Dispatch<React.SetStateAction<string>>) =>
-    (e: ChangeEvent<HTMLInputElement>) => {
-      setState(e.target.value);
-    };
+  const handleSwitch = () => {
+    onSwitch();
+    // Navigate to the login route if isLogin is false, otherwise navigate to the register route
+    navigate(!isLogin ? '/login' : '/register');
+  };
 
   return (
     <div className="register-container">
@@ -29,27 +62,27 @@ const RegisterComponent: React.FC<IRegisterForm> = ({ onSwitch }) => {
           <input
             type="email"
             value={email}
-            onChange={handleInputChange(setEmail)}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Email Address"
             required
           />
           <input
             type="password"
             value={password}
-            onChange={handleInputChange(setPassword)}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             required
           />
           <input
             type="password"
             value={confirmPassword}
-            onChange={handleInputChange(setConfirmPassword)}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Confirm Password"
             required
           />
         </div>
         <button type="submit">Register</button>
-        <button type="button" onClick={onSwitch}>
+        <button type="button" onClick={handleSwitch}>
           Have an existing account?
         </button>
       </form>

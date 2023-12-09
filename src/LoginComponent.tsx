@@ -1,18 +1,50 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import "./LoginComponent.css"; // Make sure to create a corresponding CSS file
+
 interface LoginComponentProps {
   onSwitch: () => void;
+  isLogin: boolean;
   // You can define props here if needed
 }
 
-const LoginComponent: React.FC<LoginComponentProps> = ({ onSwitch }) => {
+const LoginComponent: React.FC<LoginComponentProps> = ({ onSwitch, isLogin }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const navigate = useNavigate(); // Use the useNavigate hook
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle the login logic here
-    console.log(email, password);
+
+    try {
+      const response = await fetch('http://localhost:3000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
+
+      const data = await response.json();
+
+      // Save the token to localStorage or to a cookie
+      localStorage.setItem('token', data.token);
+
+      // Navigate to the home route
+      navigate('/home');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleSwitch = () => {
+    onSwitch();
+    // Navigate to the register route if isLogin is true, otherwise navigate to the login route
+    navigate(isLogin ? '/register' : '/login');
   };
 
   return (
@@ -35,20 +67,9 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ onSwitch }) => {
             required
           />
         </div>
-        <div className="form-footer">
-          <div className="keep-signed-in">
-            <label>
-              <input type="checkbox" />
-            </label>
-            <p id="sign-in-text">Keep me signed in</p>
-          </div>
-          <div className="sign-in-button">
-            <button type="submit">Sign In</button>
-            <a href="/forgot-password">Forgot your password?</a>
-          </div>
-        </div>
-        <button type="button" onClick={onSwitch}>
-          Need an account?
+        <button type="submit">Sign In</button>
+        <button type="button" onClick={handleSwitch}>
+          Don't have an account? Sign Up
         </button>
       </form>
     </div>
