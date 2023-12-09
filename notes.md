@@ -25,7 +25,7 @@ Welcome to the AI-Powered Cat Generation Project! This innovative endeavor uses 
 
 ## Phase 2: Front-End Development
 - [x] Implement the front-end React components for the login/sign-in page.
-- [x] Ensure proper state management and validation for user input on the front-end.
+- [ ] Ensure proper state management and validation for user input on the front-end.
 - [ ] Develop chat UI with pop-up icon for information about cats
 
 ## Phase 3: Back-End Development
@@ -70,3 +70,8 @@ Welcome to the AI-Powered Cat Generation Project! This innovative endeavor uses 
 ## Day 3 [12/9/2023]
 - set up routes for front end to receive user login/registration
 - added functionality to make api calls to REST API
+
+## Day 3 [?]
+- work on front-end interface to handle invalid credentials when logging in
+- add interface for handling mismatched passwords when registering
+- start styling the home page
