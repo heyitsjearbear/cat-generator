@@ -68,8 +68,9 @@ Welcome to the AI-Powered Cat Generation Project! This innovative endeavor uses 
 - transition: sign in disappears, sign up shows up
 
 ## Day 3 [12/9/2023]
-- set up routes for front end to receive user login/registration
-- added functionality to make api calls to REST API
+- Implemented React Router for multi-page support
+    - Made a ProtectedRoute component to make home route inaccessible to users who aren't signed in
+- Implemented user login/registration with REST API
 
 ## Day 3 [?]
 - work on front-end interface to handle invalid credentials when logging in
