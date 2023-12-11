@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./RegisterComponent.css"; // Make sure to create a corresponding CSS file
+import { Alert } from "react-bootstrap";
 
 interface RegisterComponentProps {
   onSwitch: () => void;
@@ -13,12 +14,14 @@ const RegisterComponent: React.FC<RegisterComponentProps> = ({ onSwitch, isLogin
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const navigate = useNavigate(); // Use the useNavigate hook
+  const [arePasswordsSame, setArePasswordsSame] = useState<boolean>(true); // You can use this state to show an error message if the passwords do not match
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(email, password, confirmPassword);
     if (password !== confirmPassword) {
       console.error('Passwords do not match');
+      setArePasswordsSame(false);
       return;
     }
   
@@ -82,6 +85,7 @@ const RegisterComponent: React.FC<RegisterComponentProps> = ({ onSwitch, isLogin
           />
         </div>
         <button type="submit">Register</button>
+        { !arePasswordsSame && <Alert variant="danger">Passwords do not match</Alert> }
         <button type="button" onClick={handleSwitch}>
           Have an existing account?
         </button>
