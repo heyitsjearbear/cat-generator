@@ -72,7 +72,9 @@ Welcome to the AI-Powered Cat Generation Project! This innovative endeavor uses 
     - Made a ProtectedRoute component to make home route inaccessible to users who aren't signed in
 - Implemented user login/registration with REST API
 
-## Day 3 [?]
+## Day 3 [12/11/2023]
 - work on front-end interface to handle invalid credentials when logging in
 - add interface for handling mismatched passwords when registering
 - start styling the home page
+
+## Day 4 [?]

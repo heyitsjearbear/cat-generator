@@ -1,0 +1,15 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+}
+
+.card-container .card {
+  width: 18rem;
+}
+
+.card {
+    margin-top: 2rem;
+    background-color: white;
+}
