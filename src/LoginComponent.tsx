@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./LoginComponent.css"; // Make sure to create a corresponding CSS file
-
+import { Alert } from "react-bootstrap";
 interface LoginComponentProps {
   onSwitch: () => void;
   isLogin: boolean;
@@ -12,7 +12,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ onSwitch, isLogin }) =>
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate(); // Use the useNavigate hook
-
+  const [loginValid, isLoginValid] = useState<boolean>(true); // You can use this state to show an error message if the passwords do not match
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -33,10 +33,11 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ onSwitch, isLogin }) =>
 
       // Save the token to localStorage or to a cookie
       localStorage.setItem('token', data.token);
-
+      isLoginValid(true);
       // Navigate to the home route
       navigate('/home');
     } catch (error) {
+      isLoginValid(false)
       console.error(error);
     }
   };
@@ -68,6 +69,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ onSwitch, isLogin }) =>
           />
         </div>
         <button type="submit">Sign In</button>
+        { !loginValid && <Alert variant="danger">Login Failed</Alert> }
         <button type="button" onClick={handleSwitch}>
           Don't have an account? Sign Up
         </button>
