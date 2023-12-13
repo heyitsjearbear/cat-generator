@@ -75,6 +75,6 @@ Welcome to the AI-Powered Cat Generation Project! This innovative endeavor uses 
 ## Day 3 [12/11/2023]
 - work on front-end interface to handle invalid credentials when logging in
 - add interface for handling mismatched passwords when registering
-- start styling the home page
 
-## Day 4 [?]
+## Day 4 [12/13/2023]
+- start styling the home page
